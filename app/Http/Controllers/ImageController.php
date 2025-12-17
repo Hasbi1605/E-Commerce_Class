@@ -46,10 +46,10 @@ class ImageController extends Controller
             return back()->with('error', 'Data tidak ditemukan');
         }
     }
-    private function upload($fileupload, $user): Image
+    public function upload($fileupload, $user, $folder = 'images'): Image
     {
-        // Store file in storage/app/public/images
-        $path = $fileupload->store('images', 'public');
+        // Store file in storage/app/public/images or custom folder
+        $path = $fileupload->store($folder, 'public');
         
         // Create database record
         return Image::create([

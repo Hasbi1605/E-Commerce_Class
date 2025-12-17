@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\SlideshowController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -43,6 +44,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     //Tambahan route package customer
     Route::resource('/customer', CustomerController::class)->names('customer');
+
+    // slideshow
+    Route::resource('slideshow', SlideshowController::class);
 
     //Tambahan route package transaksi
     Route::resource('/transaksi', TransaksiController::class)->names('transaksi');
