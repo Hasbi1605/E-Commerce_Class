@@ -33,6 +33,12 @@ Route::get('/kontak', [HomepageController::class, 'kontak']);
 
 Route::get('/kategori', [HomepageController::class, 'kategori']);
 
+Route::get('/kategori/{slug}', [HomepageController::class, 'kategori']);
+
+Route::get('/produk', [HomepageController::class, 'produk']);
+
+Route::get('/produk/{id}', [HomepageController::class, 'produkdetail']);
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
 
@@ -70,7 +76,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
       Route::post('imagekategori', [KategoriController::class, 'uploadimage']);
       // hapus image kategori
       Route::delete('imagekategori/{id}', [KategoriController::class, 'deleteimage']);
+
+    // produk promo
+    Route::resource('promo', \App\Http\Controllers\ProdukPromoController::class);
+    // load async produk
+    Route::get('loadprodukasync/{id}', [\App\Http\Controllers\ProdukController::class, 'loadasync']);
 });
+
+// shopping cart
+Route::group(['middleware' => 'auth'], function() {
+    // cart
+    Route::resource('/cart', \App\Http\Controllers\CartController::class);
+    Route::patch('kosongkan/{id}', [\App\Http\Controllers\CartController::class, 'kosongkan']);
+    // cart detail
+    Route::resource('/cartdetail', \App\Http\Controllers\CartDetailController::class);
+    // alamat pengiriman
+    Route::resource('/alamatpengiriman', \App\Http\Controllers\AlamatPengirimanController::class);
+    // checkout
+    Route::get('checkout', [\App\Http\Controllers\CartController::class, 'checkout']);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

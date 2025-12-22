@@ -9,7 +9,7 @@
             <ul class="navbar-nav mr-auto">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ URL::to('homepage') }}">Home</a>
+                        <a class="nav-link" href="{{ URL::to('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ URL::to('produk') }}">Produk</a>
