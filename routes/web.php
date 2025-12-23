@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
@@ -11,19 +10,6 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SlideshowController;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/halo', function() {
-//     return "Hallo Nama Saya Albert";
-// });
-
-// Route::get('/latihan', [LatihanController::class, 'index']);
-// Route::get('/blog/{idblog}', [LatihanController::class, 'blog']);
-// Route::get('/blog/{idblog}/komentar/{idkomentar}', [LatihanController::class, 'komentar']);
-// Route::get('/beranda',[LatihanController::class, 'beranda']);
 
 Route::get('/', [HomepageController::class, 'index']);
 
@@ -97,5 +83,3 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
